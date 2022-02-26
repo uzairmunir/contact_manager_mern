@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Rotes
 app.use('/api/users/', require('./routes/userRoutes'));
+app.use('/api/contacts', require('./routes/contactRoutes'));
 
 // Connect to DB
 connectDB();

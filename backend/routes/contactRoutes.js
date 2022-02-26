@@ -6,14 +6,15 @@ const {
   deleteContact,
 } = require('../controller/contactController');
 const router = express.Router();
+const auth = require('../middleware/authMiddleware');
 
 // get contacts
-router.get('/', getContacts);
+router.get('/', auth, getContacts);
 // create contacts
-router.post('/', createContact);
+router.post('/', auth, createContact);
 //update contact
-router.put('/:id', updateContact);
+router.put('/:id', auth, updateContact);
 // delete contact
-router.delete('/:id', deleteContact);
+router.delete('/:id', auth, deleteContact);
 
 module.exports = router;
