@@ -1,0 +1,74 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 2rem;
+  width: 50%;
+  margin: auto;
+  margin-top: 3rem;
+  /* border: 1px solid #333; */
+  border-radius: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.register-container > h1 {
+  display: flex;
+  align-items: center;
+  color: #333;
+  padding: 0.5rem 0;
+  font-size: 2rem;
+}
+.register-container > p {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  padding: 0.3rem 0;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+form {
+  width: 100%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form-group > label {
+  padding: 0.3rem 0;
+  font-size: 1.2rem;
+}
+.form-group > input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  outline: none;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+.register-btn {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.3rem;
+  background-color: black;
+  color: white;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+.register-btn:hover {
+  background-color: #333;
+  transition: 0.5s ease-in-out;
+}
+
+@media (max-width: 770px) {
+  .register-container {
+    width: 80%;
+    padding: 0.5rem;
+  }
+}
