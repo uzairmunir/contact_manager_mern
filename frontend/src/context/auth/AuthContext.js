@@ -2,7 +2,7 @@ import { createContext, useReducer } from 'react';
 import AuthReducer from './AuthReducer';
 import axios from 'axios';
 
-const user = localStorage.getItem('user');
+const user = JSON.parse(localStorage.getItem('user'));
 //Initial State
 let InitialState = {
   user: user ? user : null,

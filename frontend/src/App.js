@@ -1,12 +1,15 @@
 import React from 'react';
 import AuthProvider from './context/auth/AuthContext';
 import RouteConfig from './RouteConfig';
+import ContactProvider from './context/contact/ContactContext';
 
 const App = () => {
   return (
     <>
       <AuthProvider>
-        <RouteConfig />
+        <ContactProvider>
+          <RouteConfig />
+        </ContactProvider>
       </AuthProvider>
     </>
   );

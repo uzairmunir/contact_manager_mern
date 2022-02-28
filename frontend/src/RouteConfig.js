@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { AuthContext } from './context/auth/AuthContext';
+import ContactForm from './components/contact-form/ContactForm';
 
 const RouteConfig = () => {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,10 @@ const RouteConfig = () => {
           <Route path='/' element={user ? <Dashboard /> : <Login />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route
+            path='/contact-form'
+            element={user ? <ContactForm /> : <Login />}
+          />
         </Routes>
       </Router>
       <ToastContainer />
