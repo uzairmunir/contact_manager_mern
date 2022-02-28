@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Register.css';
 import { FaUser } from 'react-icons/fa';
 import { useState } from 'react';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Spinner from '../../components/spinner';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +16,17 @@ const Register = () => {
     password2: '',
   });
   const { name, email, password, password2 } = formData;
-
+  const { registerUser, error, loading, success, user } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    if (success) {
+      navigate('/');
+    }
+  }, [success, user, error, navigate]);
   // Function to handle onChange
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -22,8 +37,26 @@ const Register = () => {
   // Function to handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name || !email || !password) {
+      toast.error('All Fields are required');
+    }
+    if (password !== password2) {
+      toast.error('Password dose not match');
+    } else {
+      const data = { name, email, password };
+      registerUser(data);
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
+      });
+    }
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <section className='register-container'>
       <h1>

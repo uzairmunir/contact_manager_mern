@@ -42,6 +42,9 @@ const registerUser = asyncHandler(async (req, res) => {
 //access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    res.status(400).json({ msg: 'All fields are required' });
+  }
   const user = await User.findOne({ email });
   // Check for user
   if (!user) {

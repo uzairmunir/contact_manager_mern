@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useState } from 'react';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Spinner from '../../components/spinner';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +12,17 @@ const Login = () => {
     password: '',
   });
   const { email, password } = formData;
+  const { user, error, success, loginUser, loading } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    if (success) {
+      navigate('/');
+    }
+  }, [success, user, error, navigate]);
 
   // Function to handle onChange
   const handleChange = (e) => {
@@ -19,7 +34,19 @@ const Login = () => {
   // Function to handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error('All fields are required');
+    }
+    loginUser({ email, password });
+    setFormData({
+      email: '',
+      password: '',
+    });
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <section className='register-container'>
