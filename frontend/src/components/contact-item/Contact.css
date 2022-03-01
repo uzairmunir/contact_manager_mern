@@ -19,7 +19,7 @@
   align-items: center;
 }
 .professional {
-  background-color: #333;
+  background-color: crimson;
   border-radius: 0.3rem;
   color: white;
   padding: 0.3rem 0.5rem;
@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
-  color: crimson;
+  color: #333;
   text-transform: capitalize;
   font-size: 1.3rem;
 }
@@ -50,6 +50,15 @@
 .icon {
   font-size: 1.5rem;
   margin-right: 0.2rem;
+}
+.btn-icon {
+  cursor: pointer;
+}
+.btn-icon:hover {
+  color: crimson;
+}
+.btn-icon:active {
+  transform: scale(1.1);
 }
 .btn-div {
   display: flex;

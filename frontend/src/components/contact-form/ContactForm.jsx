@@ -16,10 +16,24 @@ const ContactForm = () => {
     type: 'Personal',
   });
   const { name, email, phone, type } = contactData;
-  const { error, success, createContact } = useContext(ContactContext);
+  const { error, success, createContact, current, updateContact } =
+    useContext(ContactContext);
   const { user } = useContext(AuthContext);
   const token = user.token;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (current === null) {
+      setContactData({
+        name: '',
+        email: '',
+        phone: '',
+        type: 'Personal',
+      });
+    } else {
+      setContactData(current);
+    }
+  }, [current]);
 
   useEffect(() => {
     if (error) {
@@ -37,12 +51,28 @@ const ContactForm = () => {
   // Function to handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !phone) {
-      toast.error('Please add required fields');
-    } else {
-      const data = { name, email, phone, type };
-      createContact(data, token);
+    // To create new contact
+    if (current === null) {
+      {
+        if (!name || !phone) {
+          toast.error('Please add required fields');
+        }
+        const data = { name, email, phone, type };
+        createContact(data, token);
+        navigate('/');
+        toast('Contact Added');
+        setContactData({
+          name: '',
+          email: '',
+          phone: '',
+          type: 'Personal',
+        });
+      }
+    } // To update contact
+    else {
+      updateContact(contactData, token);
       navigate('/');
+      toast('Contact Updated');
       setContactData({
         name: '',
         email: '',
@@ -95,7 +125,9 @@ const ContactForm = () => {
           />{' '}
           Professional{' '}
         </div>
-        <button type='submit'>Add Contact</button>
+        <button type='submit'>
+          {current !== null ? 'Update Contact' : 'Add Contact'}
+        </button>
       </form>
     </div>
   );
