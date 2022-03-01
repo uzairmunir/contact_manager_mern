@@ -8,6 +8,7 @@ let initialState = {
   error: null,
   loading: false,
   current: null,
+  filtered: null,
 };
 // Create Context
 export const ContactContext = createContext(initialState);
@@ -113,6 +114,19 @@ const ContactProvider = ({ children }) => {
       type: 'CLEAR_CURRENT',
     });
   };
+  // Filter Contacts
+  const filterContacts = (text) => {
+    dispatch({
+      type: 'FILTER',
+      payload: text,
+    });
+  };
+  //Clear Filter Contacts
+  const clearFilter = () => {
+    dispatch({
+      type: 'CLEAR_FILTER',
+    });
+  };
   // context values
   let contextValue = {
     getContacts,
@@ -121,6 +135,8 @@ const ContactProvider = ({ children }) => {
     updateContact,
     setCurrent,
     clearCurrent,
+    filterContacts,
+    clearFilter,
     ...state,
   };
   return (

@@ -7,20 +7,28 @@ import { ContactContext } from '../../context/contact/ContactContext';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import ContactItem from '../../components/contact-item/ContactItem';
+import FilterContacts from '../../components/filter/FilterContacts';
 
 const Index = () => {
   const { user } = useContext(AuthContext);
-  const { contacts, getContacts, error, success } = useContext(ContactContext);
+  const { contacts, filtered, getContacts, error, success } =
+    useContext(ContactContext);
   let token = user.token;
-  // useEffect(()=>{
 
-  // },[])
   useEffect(() => {
     if (error) {
       toast.error(error);
     }
     getContacts(token);
   }, [user, error, success]);
+
+  if (contacts.length < 0) {
+    return (
+      <h1 style={{ margin: 'auto' }}>
+        Currently Your Contact List is Empty Please add New Contact
+      </h1>
+    );
+  }
   return (
     <div className='dashboard-container'>
       <section className='user-section'>
@@ -30,16 +38,15 @@ const Index = () => {
           <Link to='/contact-form'>Create New Contact</Link>
         </button>
       </section>
+      {contacts.length > 0 ? <FilterContacts /> : ''}
       <section className='contact-section'>
-        {contacts.length > 0 ? (
-          contacts.map((contact, index) => (
-            <ContactItem key={index} contact={contact} />
-          ))
-        ) : (
-          <h1 style={{ margin: 'auto' }}>
-            Currently Your Contact List is Empty Please add New Contact
-          </h1>
-        )}
+        {filtered !== null
+          ? filtered.map((contact, index) => (
+              <ContactItem key={index} contact={contact} />
+            ))
+          : contacts.map((contact, index) => (
+              <ContactItem key={index} contact={contact} />
+            ))}
       </section>
     </div>
   );

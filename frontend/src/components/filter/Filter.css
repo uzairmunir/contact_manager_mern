@@ -1,0 +1,13 @@
+.filter-contacts {
+  margin-top: 1rem;
+  width: 70%;
+  margin: auto;
+  padding-top: 1rem;
+}
+.filter-contacts > input {
+  width: 100%;
+  padding: 1rem 1rem;
+  border: 1px solid gray;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}

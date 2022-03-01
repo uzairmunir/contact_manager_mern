@@ -16,8 +16,14 @@ const ContactForm = () => {
     type: 'Personal',
   });
   const { name, email, phone, type } = contactData;
-  const { error, success, createContact, current, updateContact } =
-    useContext(ContactContext);
+  const {
+    error,
+    success,
+    clearCurrent,
+    createContact,
+    current,
+    updateContact,
+  } = useContext(ContactContext);
   const { user } = useContext(AuthContext);
   const token = user.token;
   const navigate = useNavigate();
@@ -129,6 +135,15 @@ const ContactForm = () => {
           {current !== null ? 'Update Contact' : 'Add Contact'}
         </button>
       </form>
+      {current !== null ? (
+        <button className='clear-btn' onClick={() => clearCurrent()}>
+          Clear Form
+        </button>
+      ) : (
+        <button className='clear-btn' onClick={() => navigate('/')}>
+          Back To Home
+        </button>
+      )}
     </div>
   );
 };
