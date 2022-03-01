@@ -1,0 +1,58 @@
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: #efefef;
+  margin: 0.3rem;
+}
+.contact-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.personal {
+  background-color: rgb(95, 95, 248);
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  align-items: center;
+}
+.professional {
+  background-color: #333;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  align-items: center;
+}
+.contact-name > h6 {
+  align-items: flex-end;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.contact-name > h3 {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  color: crimson;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+}
+.contact-item > h4 {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: lighter;
+}
+.icon {
+  font-size: 1.5rem;
+  margin-right: 0.2rem;
+}
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}

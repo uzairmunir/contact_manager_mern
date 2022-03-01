@@ -19,6 +19,7 @@
   padding: 0.5rem 0;
   font-size: 2rem;
   font-style: italic;
+  text-transform: capitalize;
 }
 .user-section > p {
   font-size: 1.5rem;
@@ -38,6 +39,12 @@
 button > a {
   text-decoration: none;
   color: white;
+}
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  margin-top: 2rem;
 }
 @media screen and (max-width: 770px) {
   .user-section {
